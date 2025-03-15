@@ -1,5 +1,6 @@
 const express = require('express');
-const {getHomepage, getBaoAn} = require('../controller/homeControler');
+const {getHomepage, getBaoAn} = require('../controller/homeController');
+const { getSample } = require('../controller/homeController');
 const router = express.Router();
 
 // router.Method('route', handler)
@@ -7,5 +8,7 @@ const router = express.Router();
 router.get('/', getHomepage);
   
 router.get('/baoan', getBaoAn);
+
+router.get('/sample', getSample);
 
 module.exports = router;
