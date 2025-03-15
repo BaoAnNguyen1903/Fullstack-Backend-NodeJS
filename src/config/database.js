@@ -1,7 +1,7 @@
 require('dotenv').config(); // import khi xai` process.env
 
 //get the client
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise'); // thêm promise để k phải viết dưới dạng callback
 
 //test connection
 // const connection = mysql.createConnection({
