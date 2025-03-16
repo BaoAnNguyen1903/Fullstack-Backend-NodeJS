@@ -1,5 +1,5 @@
 const connection = require("../config/database");
-const { getAllUsers } = require('../service/CRUDService');
+const { getAllUsers, getUserById } = require('../service/CRUDService');
 
 const getHomepage = async (req, res) => {
     let results = await getAllUsers();
@@ -17,9 +17,10 @@ const getSample = (req, res) => {
 const getCreatePage = (req, res) => {
     res.render('create.ejs')
 }
-const getUpdatePage = (req, res) => {
+const getUpdatePage = async (req, res) => {
     const userId = req.params.id;
-    res.render('edit.ejs')
+    let user = await getUserById(userId);
+    res.render('edit.ejs', {userEdit : user})// bên trái là tên biến muốn truyền, bên phải là giá trị của nónó
 }
 
 // callback function
