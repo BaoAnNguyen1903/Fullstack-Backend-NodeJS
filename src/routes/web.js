@@ -13,6 +13,6 @@ router.get('/sample', getSample);
 router.post('/create-user', postCreateUser);
 
 router.get('/create', getCreatePage);
-router.get('/edit', getUpdatePage)
+router.get('/update/:id', getUpdatePage)
 
 module.exports = router;
