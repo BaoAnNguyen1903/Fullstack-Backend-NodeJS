@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update A User</title>
+    <title>Delete A User</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
@@ -13,31 +13,21 @@
     </div>
 
     <div class="form-add-new">
-        <form action="/update-user" method="post">
+        <form action="/delete-user" method="post">
             <fieldset>
-                <legend>Update a user</legend>
+                <legend>Delete a user</legend>
                 <div class="input-group d-none">
                     <label>Id: </label>
                     <input type="text" name="userId" value="<%= userEdit.id %>"/>
                 </div>
             
                 <div class="input-group">
-                    <label>Email: </label>
+                    <label>Are you sure delete this user with Email: </label>
                     <input type="text" name="email" value="<%= userEdit.email %>"/>
                 </div>
 
-                <div class="input-group">
-                    <label>Name: </label>
-                    <input type="text" name="name" value="<%= userEdit.name %>"/>
-                </div>
-
-                <div class="input-group">
-                    <label>City: </label>
-                    <input type="text" name="city" value="<%= userEdit.city %>"/>
-                </div>
-
                 <div>
-                    <button>SAVE</button>
+                    <button>Confirm</button>
                 </div>
             </fieldset>
         </form>
