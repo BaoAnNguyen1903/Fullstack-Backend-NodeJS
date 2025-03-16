@@ -17,6 +17,9 @@ const getSample = (req, res) => {
 const getCreatePage = (req, res) => {
     res.render('create.ejs')
 }
+const getUpdatePage = (req, res) => {
+    res.render('edit.ejs')
+}
 
 // callback function
 const postCreateUser = async (req, res) => {
@@ -56,5 +59,6 @@ module.exports = {
     getBaoAn,
     getSample,
     postCreateUser,
-    getCreatePage
+    getCreatePage,
+    getUpdatePage
 }
