@@ -17,13 +17,8 @@ configViewEngine(app);
 //route
 app.use('/', webRoutes);
 
-//querry
-// connection.query(
-//   'SELECT * FROM Users',
-//   function (err, results, fields) {
-//     console.log(">>> results= ", results);
-//   }
-// );
+//test connection
+connection();
 
 app.listen(port, hostname, () => {
   console.log(`Example app listening on port ${port}`)
