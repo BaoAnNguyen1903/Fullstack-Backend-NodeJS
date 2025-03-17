@@ -17,9 +17,16 @@ configViewEngine(app);
 //route
 app.use('/', webRoutes);
 
-//test connection
-connection();
+//anonimot function (() => {})viết sai chính tả rr nên viết cho đọc thôi
+(async() => { //seftruning function 
+  //test connection
+  try {
+    await connection();
+    app.listen(port, hostname, () => {
+    console.log(`backend zero app listening on port ${port}`)
+  });
+  } catch (error) {
+    console.log(">>> Err connect to db: ", error);
+  }
+})()
 
-app.listen(port, hostname, () => {
-  console.log(`Example app listening on port ${port}`)
-});
