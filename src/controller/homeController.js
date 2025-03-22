@@ -1,8 +1,9 @@
 const connection = require("../config/database");
 const { getAllUsers, getUserById, updateUserById, deleteUserById } = require('../service/CRUDService');
+const User = require("../model/user");
 
 const getHomepage = async (req, res) => {
-    let results = await getAllUsers();
+    let results = [];
     return res.render('home.ejs', {listUsers: results})
 }
 
@@ -25,31 +26,12 @@ const postCreateUser = async (req, res) => {
     let email = req.body.email; // những thuộc tính này lấy dâta bằng name="" bên html
     let name = req.body.name;
     let city = req.body.city;
-    // console.log(">>> email= ", email, 'name= ', name, 'city= ',city)
-    // connection.query(
-    //     ` insert into Users (email, name, city) values (?, ?, ?) `,
-    //     [email, name, city],
-    //     function(err, results) {
-    //         console.log(results);
-    //         res.send('create user success !');
-    //     }
-    // );
-
-    let [results, fields] = await connection.query(
-        ` insert into Users (email, name, city) values (?, ?, ?) `, [email, name, city],
-    );
-
-    console.log(">>> check results: ", results);
+    await User.create({
+        email: email,
+        name: name,
+        city: city
+    })
     res.send('Create user success !');
-    // connection.query(
-    //     `select * from Users`,
-    //     function (err, results, fields) {
-    //         console.log(">>> results= ", results)
-    //     }
-    // )
-
-    // const [results, fields] = await connection.query('select * from Users');
-    // console.log(">>> check results= ", results);
 }
 
 const getUpdatePage = async (req, res) => {
