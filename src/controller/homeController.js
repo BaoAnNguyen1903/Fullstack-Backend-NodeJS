@@ -3,8 +3,8 @@ const { getAllUsers, getUserById, updateUserById, deleteUserById } = require('..
 const User = require("../model/user");
 
 const getHomepage = async (req, res) => {
-    let results = [];
-    return res.render('home.ejs', {listUsers: results})
+    let results = await User.find({});
+    return res.render('home.ejs',{listUsers: results});
 }
 
 const getBaoAn = (req, res) => {
