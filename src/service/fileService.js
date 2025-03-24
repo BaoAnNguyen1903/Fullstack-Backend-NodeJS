@@ -1,6 +1,4 @@
-const { error } = require('console');
 const path = require('path'); // thư viện này để dẫn upload
-const { isNull } = require('util');
 
 const uploadSingleFile = async (fileObject) => {
     // The name of the input filed (i.e "sampleFile") is used to retrieve the uploaded file
@@ -9,7 +7,7 @@ const uploadSingleFile = async (fileObject) => {
     // abc.png => abc-timestamp.png
     let extName = path.extname(fileObject.name);
     // get image's bane (without extention)
-    let baseName = path.basename(fileObject, extName);
+    let baseName = path.basename(fileObject.name, extName); // thiếu .name bug lòi
     // create final path: eg: /upload/your-image.png
     let finalName = `${baseName}-${Date.now()}${extName}`
     let finalPath = `${uploadPath}/${finalName}`
