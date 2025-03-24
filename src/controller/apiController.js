@@ -1,4 +1,5 @@
 const User = require("../model/user");
+const {uploadSingleFile} = require("../service/fileService");
 
 const getUsersAPI = async (req, res) => {
     let results = await User.find({});
@@ -55,9 +56,19 @@ const deleteDeleteUserAPI = async (req, res) => {
     )
 }
 
+const postUploadSingleFileAPI = async (req, res) => {
+    if (!req.files || Object.keys(req.files).length === 0) {
+        return res.status(400).send('No files were upload');
+    }
+    let results = await uploadSingleFile(req.files.image) // để lấy ra fileObject bên service thì sẽ lấy ra image (đối tượn do đặt tên)
+    console.log(">>> check return: ", results)
+    res.send("ok");
+}
+
 module.exports = {
     getUsersAPI,
     postCreateUserAPI,
     putUpdateUserAPI,
-    deleteDeleteUserAPI
+    deleteDeleteUserAPI,
+    postUploadSingleFileAPI
 }
