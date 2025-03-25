@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoose_delete = require('mongoose-delete');
 
 //shape data (định dạnh dữ liệu)
 // mongoose bắt phải thông qua Schema để khai báo dữ liệu giúp ràng buộc dữ liệu chặt chẽ hơn
@@ -16,6 +17,8 @@ const customerSchema = new mongoose.Schema({
     // createAt: Date, updateAt: Date. mongoose đã làm cho chúng tata
     {timestamps: true} // chỉ cần như này là sẽ có 2 trường createAt: Date, updateAt: Date
 );
+
+customerSchema.plugin(mongoose_delete);// cau hinh mongoose-delete.
 
 const Customer = mongoose.model('customer', customerSchema);//'user' là tên trong db, mongo sẽ tự động thêm s thành users
 
