@@ -47,9 +47,21 @@ const createArrayCustomerService = async (arr) => {
     }
 }
 
+const deleteDeleteCustomerService = async (customerId) => {
+    try {
+        // let result = await Customer.deleteOne({_id: customerId}); đây là xóa luôn trong db
+        let result = await Customer.deleteById(customerId); // đây là tạo thêm trường true false
+        return result;
+    } catch (error) {
+        console.log(">>>check err: ", error);
+        return null;
+    }
+}
+
 module.exports = {
     getAllCustomersService,
     putUpdateCustomerService,
     createCustomerService,
-    createArrayCustomerService
+    createArrayCustomerService,
+    deleteDeleteCustomerService
 }

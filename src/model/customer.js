@@ -18,7 +18,8 @@ const customerSchema = new mongoose.Schema({
     {timestamps: true} // chỉ cần như này là sẽ có 2 trường createAt: Date, updateAt: Date
 );
 
-customerSchema.plugin(mongoose_delete);// cau hinh mongoose-delete.
+customerSchema.plugin(mongoose_delete,  {overrideMethods: 'all'});// cau hinh mongoose-delete.
+// {overrideMethods: 'all'} để khi get all customer thì k hiện lên thằng deleted:true
 
 const Customer = mongoose.model('customer', customerSchema);//'user' là tên trong db, mongo sẽ tự động thêm s thành users
 

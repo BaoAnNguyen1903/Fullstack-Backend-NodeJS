@@ -1,5 +1,5 @@
 const {uploadSingleFile} = require("../service/fileService");
-const {createCustomerService, createArrayCustomerService, getAllCustomersService, putUpdateCustomerService} = require("../service/customerService");
+const {createCustomerService, createArrayCustomerService, getAllCustomersService, putUpdateCustomerService, deleteDeleteCustomerService} = require("../service/customerService");
 
 // object phai co {key: value}
 module.exports = {
@@ -64,6 +64,15 @@ module.exports = {
         return res.status(200).json({
             EC: 0,
             data: customer
+        })
+    },
+
+    deleteDeleteCustomerAPI : async (req, res) => {
+        let customerId = req.body.customerId;
+        let result = await deleteDeleteCustomerService(customerId)
+        return res.status(200).json({
+            EC: 0,
+            data: result
         })
     }
 }

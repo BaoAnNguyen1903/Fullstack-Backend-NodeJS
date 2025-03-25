@@ -11,7 +11,8 @@ const {
     postCreateCustomerAPI,
     postCreateArrayCustomerAPI,
     getAllCustomersAPI,
-    putUpdateCustomerAPI
+    putUpdateCustomerAPI,
+    deleteDeleteCustomerAPI
 } = require('../controller/customerController');
 
 const routerAPI = express.Router();
@@ -28,6 +29,7 @@ routerAPI.get('/customers', getAllCustomersAPI);
 routerAPI.post('/customers', postCreateCustomerAPI);
 routerAPI.post('/customers-many', postCreateArrayCustomerAPI);
 routerAPI.put('/customers', putUpdateCustomerAPI);
+routerAPI.delete('/customers', deleteDeleteCustomerAPI);
 
 
 module.exports = routerAPI;
