@@ -8,7 +8,7 @@ const getAllCustomersService = async (limit, page, name) => {
             if (name) {
                 result = await Customer.find(
                     {
-                        "name": { $regax: '.*' + name + '.*'}
+                        "name": { $regex: '.*' + name + '.*'}
                     }
                 ).skip(offset).limit(limit).exec();
             } else
