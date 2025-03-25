@@ -1,5 +1,5 @@
 const {uploadSingleFile} = require("../service/fileService");
-const {createCustomerService, createArrayCustomerService} = require("../service/customerService");
+const {createCustomerService, createArrayCustomerService, getAllCustomersService} = require("../service/customerService");
 
 // object phai co {key: value}
 module.exports = {
@@ -31,6 +31,21 @@ module.exports = {
     postCreateArrayCustomerAPI : async (req, res) => {
         let customers = await createArrayCustomerService(req.body.customers);
         if (customers) { //customers có s là do tên trong postman đặt là customers để test
+            return res.status(200).json({
+                EC: 0,
+                data: customers
+            })
+        } else {
+            return res.status(200).json({
+                EC: -1,
+                data: customers
+            })
+        }
+    },
+
+    getAllCustomersAPI : async (req, res) => {
+        let customers = await getAllCustomersService();
+        if (customers) {
             return res.status(200).json({
                 EC: 0,
                 data: customers

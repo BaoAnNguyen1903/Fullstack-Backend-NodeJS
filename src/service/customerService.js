@@ -1,5 +1,15 @@
 const Customer = require("../model/customer");
 
+const getAllCustomersService = async () => {
+    try {
+        let result = await Customer.find({});
+        return result;
+    } catch (error) {
+        console.log(">>>check err: ", error)
+        return null;
+    }
+}
+
 const createCustomerService = async (customerData) => {
     try {
         let result = await Customer.create({
@@ -28,6 +38,7 @@ const createArrayCustomerService = async (arr) => {
 }
 
 module.exports = {
+    getAllCustomersService,
     createCustomerService,
     createArrayCustomerService
 }
