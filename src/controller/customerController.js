@@ -1,5 +1,6 @@
 const {uploadSingleFile} = require("../service/fileService");
 const {createCustomerService, createArrayCustomerService, getAllCustomersService, putUpdateCustomerService, deleteDeleteCustomerService} = require("../service/customerService");
+const aqp = require('api-query-params');
 
 // object phai co {key: value}
 module.exports = {
@@ -50,7 +51,7 @@ module.exports = {
         let customers = null;
 
         if (limit && page) {
-            customers = await getAllCustomersService(limit, page, name);
+            customers = await getAllCustomersService(limit, page, name, req.query);
         } else 
             customers = await getAllCustomersService();
             
