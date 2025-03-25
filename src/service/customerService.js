@@ -50,7 +50,17 @@ const createArrayCustomerService = async (arr) => {
 const deleteDeleteCustomerService = async (customerId) => {
     try {
         // let result = await Customer.deleteOne({_id: customerId}); đây là xóa luôn trong db
-        let result = await Customer.deleteById(customerId); // đây là tạo thêm trường true false
+        let result = await Customer.deleteById(customerId); // đây là tạo thêm trường true false. hàm này là của mongoose-delete
+        return result;
+    } catch (error) {
+        console.log(">>>check err: ", error);
+        return null;
+    }
+}
+
+const deleteDeleteArrayCustomerService = async (arrCustomersId) => {
+    try {
+        let result = await Customer.delete({_id: {$in: arrCustomersId}}); // $in  là 1 toán tử xóa những phần tử trong arr
         return result;
     } catch (error) {
         console.log(">>>check err: ", error);
@@ -63,5 +73,6 @@ module.exports = {
     putUpdateCustomerService,
     createCustomerService,
     createArrayCustomerService,
-    deleteDeleteCustomerService
+    deleteDeleteCustomerService,
+    deleteDeleteArrayCustomerService
 }

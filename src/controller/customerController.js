@@ -74,5 +74,14 @@ module.exports = {
             EC: 0,
             data: result
         })
+    },
+
+    deleteDeleteArrayCustomerAPI : async (req, res) => {
+        let customersId = req.body.customersId;
+        let result = await deleteDeleteArrayCustomerService(req.body.customers);
+        return res.status(200).json({
+            EC: 0,
+            data: result
+        })
     }
 }
