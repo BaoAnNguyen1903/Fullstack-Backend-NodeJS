@@ -30,11 +30,12 @@ app.use('/v1/api/', apiRoutes);
 (async() => { //seftruning function 
   //test connection
   try {
+    //====================================================================//
     // kết nối bằng mongoose
     // await connection();
-
+    //====================================================================//
+    
     //using mongodb(driver) to connect db
-
     //conection url
     const url = process.env.DB_HOST_WITH_DRIVER;
     const client = new MongoClient(url);
@@ -43,9 +44,14 @@ app.use('/v1/api/', apiRoutes);
     await client.connect();
     console.log('Connected successfully to sever');
     const db = client.db(dbName);
-    const collection = db.collection('documents');
+    const collection = db.collection('customers');
+    // điểm mạnh của mongodb(driver) là lưu data vào db không theo model nên lưu trời lưu đất gì cx đc. Còn mongoose thông qua model nên phải đủ thuộc tính
+    // collection.insertOne({'name': 'Bao an dep trai'})
+    // collection.insertOne({'address': 'da nang', email: 'baoan@gmail.com'})
 
-
+    // let a = await collection.findOne({address: 'da nang'});
+    // console.log(">>>check a: ", a);
+    
     //===================================================================//
     app.listen(port, hostname, () => {
     console.log(`backend zero app listening on port ${port}`)
