@@ -8,6 +8,7 @@ const connection = require('./config/database');
 const app = express(); // app express
 const port = process.env.PORT || 8888;
 const hostname = process.env.HOST_NAME;
+const { MongoClient } = require('mongodb'); // mongodb(driver) connect db
 
 //config fileupload
 //luu y: phai config phia tren route
@@ -29,7 +30,23 @@ app.use('/v1/api/', apiRoutes);
 (async() => { //seftruning function 
   //test connection
   try {
-    await connection();
+    // kết nối bằng mongoose
+    // await connection();
+
+    //using mongodb(driver) to connect db
+
+    //conection url
+    const url = process.env.DB_HOST_WITH_DRIVER;
+    const client = new MongoClient(url);
+    //Database name
+    const dbName = process.env.DB_NAME;
+    await client.connect();
+    console.log('Connected successfully to sever');
+    const db = client.db(dbName);
+    const collection = db.collection('documents');
+
+
+    //===================================================================//
     app.listen(port, hostname, () => {
     console.log(`backend zero app listening on port ${port}`)
   });
