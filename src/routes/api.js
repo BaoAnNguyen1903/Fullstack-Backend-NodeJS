@@ -15,6 +15,9 @@ const {
     deleteDeleteCustomerAPI,
     deleteDeleteArrayCustomerAPI
 } = require('../controller/customerController');
+const {
+    postCreateProject
+} = require('../controller/projectController');
 
 const routerAPI = express.Router();
 
@@ -32,6 +35,8 @@ routerAPI.post('/customers-many', postCreateArrayCustomerAPI);
 routerAPI.put('/customers', putUpdateCustomerAPI);
 routerAPI.delete('/customers', deleteDeleteCustomerAPI);
 routerAPI.delete('/customers-many', deleteDeleteArrayCustomerAPI);
+
+routerAPI.post("/projects", postCreateProject);
 
 routerAPI.get('/info', (req, res) => { // req.query k cần khai báo thêm route và truyền động được nhiều datadata
     return res.status(200).json({
