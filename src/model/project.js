@@ -22,9 +22,9 @@ const projectSchema = new mongoose.Schema(
         endDate: String,
         description: String,
         customerInfor: customerSchema,
-        usersInfor: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],// rỗng
+        usersInfor: [{type: mongoose.Schema.Types.ObjectId, ref: 'user'}],// rỗng
         leader: userSchema,
-        tasks: [{type: mongoose.Schema.Types.ObjectId, ref: 'Task'}]
+        tasks: [{type: mongoose.Schema.Types.ObjectId, ref: 'task'}]
     },
     {
         timestamps: true, //createAt, updateAt
