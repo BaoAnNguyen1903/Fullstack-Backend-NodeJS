@@ -47,7 +47,7 @@ module.exports = {
     },
 
     updateProject: async (data) => {
-        let result = await Project.updateOne({_projectId: data.projectId}, {...data})
+        let result = await Project.updateOne({_id: data.projectId}, {...data})
         return result;
     },
 
