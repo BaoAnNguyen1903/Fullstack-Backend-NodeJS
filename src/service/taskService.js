@@ -22,7 +22,7 @@ module.exports = {
     },
 
     updateTask: async (data) => {
-        let result = await Task.updateOne({_taskId: data.taskId}, {...data}) // để giữ những thuộc tính k thay đổi
+        let result = await Task.updateOne({_taskId: data.taskId}, {...data}) // copy phần tử, để giữ những thuộc tính k thay đổi
         return result;
     },
 
