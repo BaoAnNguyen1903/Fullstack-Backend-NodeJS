@@ -17,8 +17,17 @@ const {
 } = require('../controller/customerController');
 const {
     postCreateProject,
-    getAllProject
+    getAllProject,
+    putUpdateProjectAPI,
+    deleteDeleteProjectAPI
 } = require('../controller/projectController');
+
+const {
+    createTaskAPI,
+    getTasksAPI,
+    updateTaskAPI,
+    deleteTaskAPI
+} = require('../controller/taskController');
 
 const routerAPI = express.Router();
 
@@ -39,6 +48,13 @@ routerAPI.delete('/customers-many', deleteDeleteArrayCustomerAPI);
 
 routerAPI.post("/projects", postCreateProject);
 routerAPI.get('/projects', getAllProject);
+routerAPI.put('/projects', putUpdateProjectAPI);
+routerAPI.delete('/projects', deleteDeleteProjectAPI);
+
+routerAPI.post("/tasks", createTaskAPI);
+routerAPI.get('/tasks', getTasksAPI);
+routerAPI.put('/tasks', updateTaskAPI);
+routerAPI.delete('/tasks', deleteTaskAPI);
 
 routerAPI.get('/info', (req, res) => { // req.query k cần khai báo thêm route và truyền động được nhiều datadata
     return res.status(200).json({

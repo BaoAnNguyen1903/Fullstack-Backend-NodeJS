@@ -1,4 +1,4 @@
-const {createProject, getProjects} = require('../service/productService');
+const {createProject, getProjects, updateProject, deleteProject} = require('../service/productService');
 
 module.exports = {
     postCreateProject : async (req, res) => {
@@ -19,5 +19,21 @@ module.exports = {
                 data: result
             }
         )
+    },
+
+    putUpdateProjectAPI: async (req, res) => {
+        let result = await updateProject(req.body);
+        return res.status(200).json({
+            EC: 0,
+            data: result
+        })
+    },
+
+    deleteDeleteProjectAPI: async (req, res) => {
+        let result = await deleteProject(req.body.id);
+        return res.status(200).json({
+            EC: 0,
+            data: result
+        })
     }
 }
