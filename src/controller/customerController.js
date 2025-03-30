@@ -1,32 +1,50 @@
 const {uploadSingleFile} = require("../service/fileService");
 const {createCustomerService, createArrayCustomerService, getAllCustomersService, putUpdateCustomerService, deleteDeleteCustomerService} = require("../service/customerService");
-const aqp = require('api-query-params');
+const Joi = require('joi');
 
 // object phai co {key: value}
 module.exports = {
     postCreateCustomerAPI : async (req, res) => {
         // destructing object js
         let {name, address, phone, email, description} = req.body;
-        let imageUrl = "";
-        if (!req.files || Object.keys(req.files).length === 0) {
-            //do nothing
-        } else {
-            let results = await uploadSingleFile(req.files.image);
-            imageUrl = results.path; // cần đường link này để lưu vào db
-        }
-        let customerData = {
-            name, 
-            address, 
-            phone, 
-            email, 
-            description, 
-            image: imageUrl
-        }
-        let customer = await createCustomerService(customerData);
-        return res.status(200).json({
-            EC: 0,
-            data: customer
+
+        //validate by joi. validate data gửi từ client lên
+        const schema = Joi.object({
+            name: Joi.string()
+                .alphanum()
+                .min(3)
+                .max(30)
+                .required(),
+            address: Joi.string(),
+            phone: Joi.string().pattern(new RegExp('^[0-9]{8,11}$')),
+            email: Joi.string().email(),
+            description: Joi.string(),
         })
+        const {error} = schema.validate(req.body, {abortEarly: false}); //{abortEarly: false}. set trường này thành false để trả ra tất cả lỗi vì mặc định nó là true thì chỉ trả ra lỗi đầu tiên
+        if (error) {
+            // return err
+        } else {
+            let imageUrl = "";
+            if (!req.files || Object.keys(req.files).length === 0) {
+                //do nothing
+            } else {
+                let results = await uploadSingleFile(req.files.image);
+                imageUrl = results.path; // cần đường link này để lưu vào db
+            }
+            let customerData = {
+                name, 
+                address, 
+                phone, 
+                email, 
+                description, 
+                image: imageUrl
+            }
+            let customer = await createCustomerService(customerData);
+            return res.status(200).json({
+                EC: 0,
+                data: customer
+            })
+        }
     },
     
     postCreateArrayCustomerAPI : async (req, res) => {
