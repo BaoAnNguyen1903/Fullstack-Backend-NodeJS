@@ -32,7 +32,7 @@ app.use('/v1/api/', apiRoutes);
   try {
     //====================================================================//
     // kết nối bằng mongoose
-    // await connection();
+    await connection();
     //====================================================================//
     
     //using mongodb(driver) to connect db
